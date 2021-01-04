@@ -96,7 +96,7 @@ body{
         border-right: 1px solid #f1f1f1;
 
     }
-/*Mttre une marge de 5px a tous les p du bloc-h et du bloc-j*/
+/*Metre une marge de 5px a tous les p du bloc-h et du bloc-j*/
     .bloc-h p, .bloc-j p {
         margin: 5px;
     }
