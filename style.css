@@ -40,10 +40,11 @@ body{
 
     .bloc-logo{
         width: 50%;
+        padding-left: 80px;
     }
 
     .bloc-logo img {
-        width: 80%;
+        width: 70%;
         height: auto;
     }
 
@@ -68,4 +69,34 @@ body{
         word-wrap: break-word;
     }
 
+    .heure-bloc-prevision{
+        grid-area: 3 / 1 / 4 / -1;
+    }
 
+    .jour-prevision-bloc{
+        grid-area: 4 / 1 / 5 / -1;
+    }
+
+    .jour-prevision-bloc, .heure-bloc-prevision{
+        display: grid;
+        grid-template: 100px / repeat(7, 1fr);
+    }
+    .bloc-h, .bloc-j{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-top: 1px solid   #f1f1f1;
+        font-size: 21px;
+           }
+
+/*bloc des heures mais pas le derniere enfant,,blocjour mais pas le dernier enfant*/
+/*on a mis des border-right a tous le monde suaf la dernier => pour ne pas surcharger le &px de pus en bordure*/
+    .bloc-h:not(:last-child),  .bloc-j:not(:last-child){
+        border-right: 1px solid #f1f1f1;
+
+    }
+/*Mttre une marge de 5px a tous les p du bloc-h et du bloc-j*/
+    .bloc-h p, .bloc-j p {
+        margin: 5px;
+    }
