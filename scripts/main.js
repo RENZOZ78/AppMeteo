@@ -1,5 +1,11 @@
+//importation du tableau des jours
+import tabJoursEnOrdre from "./Utilitaire/gestionTemps.js";
+
+console.log("DEPUIS MAIN JS: " + tabJoursEnOrdre)
+
 const CLEFAPI = '6202dd93180a1717ca32707850723c29';
-let resultsAPI;
+let resultatsAPI;
+
 
 const temps = document.querySelector('.temps')
 const temperature = document.querySelector('.temperature')
