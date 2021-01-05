@@ -1,6 +1,13 @@
 const CLEFAPI = '6202dd93180a1717ca32707850723c29';
 let resultsAPI;
 
+const temps = document.querySelector('.temps')
+const temperature = document.querySelector('.temperature')
+const localisation = document.querySelector('.localisation')
+const heure = document.querySelectorAll('.heure-nom-prevision')
+const tempPourH = document.querySelectorAll('.heure-prevision-valeur')
+
+
 //IL VA  NOUS FALLOIR LA GEOLOCALISATION
 if(navigator.geolocation) { //si le navigateur a bien la geolocalisation
     navigator.geolocation.getCurrentPosition(position => {
@@ -34,6 +41,36 @@ function AppelAPI(long, lat) {
         //CONSOL LOG DES DONNEES
         .then((data) => {
             console.log(data);
+
+           let resultatsAPI = data;
+
+            temps.innerText = resultatsAPI.current.weather[0].description; //on prends temsp de notre index html
+            temperature.innerText = `${Math.trunc(resultatsAPI.current.temp)}°`;//math.trunc enleve les chiifres apres la virgule
+            localisation.innerText = resultatsAPI.timezone;
+
+            //HEURES PAR TRANCHE DE 3 AVEC LEUR TEMPERATURE
+
+            let heureActuelle = new Date().getHours();
+
+            for(let i = 0; i < heure.length; i++) {
+
+                let heureIncr = heureActuelle + i * 3;
+
+                if(heureIncr > 24) {
+                    heure[i].innerText = `${heureIncr - 24} h`;
+                } else if (heureIncr === 24) {
+                    heure[i].innerText = "00 h"
+                } else {
+                heure[i].innerText = `${heureIncr} h`;//dans chaque bloc je vais afficher lheure actuel et / sa va incrementer par 3h
+            }}
+
+            // temp pour 3h
+            for(let j = 0; j < tempPourH.length; j++) {
+
+                 tempPourH[j].innerText = `${Math.trunc(resultatsAPI.hourly[j * 3].temp)}°`
+
+
+            }
         })
 }
 
