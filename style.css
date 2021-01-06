@@ -44,7 +44,7 @@ body{
     }
 
     .bloc-logo img {
-        width: 70%;
+        width: 100%;
         height: auto;
     }
 
@@ -99,4 +99,27 @@ body{
 /*Metre une marge de 5px a tous les p du bloc-h et du bloc-j*/
     .bloc-h p, .bloc-j p {
         margin: 5px;
+    }
+
+/*Animation chargement*/
+    .overlay-icone-chargement{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgb(59,50,50), rgb(22,28,29));
+        transition: opacity 1.1s ease-out;
+        z-index: 1000;
+
+    }
+
+    .overlay-icone-chargement img{
+        width: 150px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50% -50%);
+    }
+
+    .disparition{
+        opacity: 0;
     }

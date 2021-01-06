@@ -9,7 +9,7 @@ console.log(jourActuel, ajd);
 jourActuel = jourActuel.charAt(0).toUpperCase() + jourActuel.slice(1);
 
 let tabJoursEnOrdre = joursSemaine.slice(joursSemaine.indexOf(jourActuel)).concat(joursSemaine.slice(0, joursSemaine.indexOf(jourActuel)))
-console.log(tabJoursEnOrdre)
+// console.log(tabJoursEnOrdre)
 
 //exportation du tableau des jours
 export default  tabJoursEnOrdre;

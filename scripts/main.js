@@ -1,7 +1,8 @@
 //importation du tableau des jours
+
 import tabJoursEnOrdre from "./Utilitaire/gestionTemps.js";
 
-console.log("DEPUIS MAIN JS: " + tabJoursEnOrdre)
+// console.log("DEPUIS MAIN JS: " + tabJoursEnOrdre)
 
 const CLEFAPI = '6202dd93180a1717ca32707850723c29';
 let resultatsAPI;
@@ -12,6 +13,11 @@ const temperature = document.querySelector('.temperature')
 const localisation = document.querySelector('.localisation')
 const heure = document.querySelectorAll('.heure-nom-prevision')
 const tempPourH = document.querySelectorAll('.heure-prevision-valeur')
+const joursDiv = document.querySelectorAll('.jour-prevision-nom')
+const tempPourJ = document.querySelectorAll('.jour-prevision-temp')
+const imgIcone = document.querySelector('.logo-meteo')
+const chargementContainer = document.querySelector('.overlay-icone-chargement')
+
 
 
 //IL VA  NOUS FALLOIR LA GEOLOCALISATION
@@ -46,7 +52,7 @@ function AppelAPI(long, lat) {
         })
         //CONSOL LOG DES DONNEES
         .then((data) => {
-            console.log(data);
+            // console.log(data);
 
            let resultatsAPI = data;
 
@@ -77,6 +83,28 @@ function AppelAPI(long, lat) {
 
 
             }
+
+            //trois premieres lettres des jours
+
+            for(let k = 0; k < tabJoursEnOrdre.length; k++){
+                joursDiv[k].innerText = tabJoursEnOrdre[k].slice(0,3);
+            }
+
+            //temps pour jours
+
+            for(let m = 0; m < 7; m++ ){
+                tempPourJ[m].innerText = `${Math.trunc(resultatsAPI.daily[m + 1].temp.day)}°`
+            }
+
+            //Icone dynamique
+            if(heureActuelle >= 6 && heureActuelle < 21){
+                imgIcone.src = `ressources/jour/${resultatsAPI.current.weather[0].icon}.svg`
+            }else {
+                imgIcone.src = `ressources/nuit/${resultatsAPI.current.weather[0].icon}.svg`
+            }
+
+            //une fois que toutes les cases sont remplies
+            chargementContainer.classList.add('disparition');
         })
 }
 
